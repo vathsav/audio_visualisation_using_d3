@@ -26,17 +26,27 @@ var buttonGroup = svgVisualisation.append("g").attr("transform", "translate(" + 
 
 $("#play-audio").click(function () {
     if (!isPlaying) {
-        document.getElementById('audio-file').play()
+        d3.select("#image-play-pause")
+            .attr("xlink:href", "../img/audio_frequencies_using_d3/pause.png");
+        document.getElementById('audio-file').play();
         isPlaying = !isPlaying;
     }
 });
 
-buttonGroup.append("svg:image").attr("xlink:href", "../img/audio_frequencies_using_d3/pause.png").attr("width", 30)
-    .attr("height", 30).on("click", function () {
+buttonGroup.append("svg:image")
+    .attr("id", "image-play-pause")
+    .attr("xlink:href", "../img/audio_frequencies_using_d3/play.png")
+    .attr("width", 30)
+    .attr("height", 30);
 
+buttonGroup.on("click", function () {
     if (isPlaying) {
+        d3.select("#image-play-pause")
+            .attr("xlink:href", "../img/audio_frequencies_using_d3/play.png");
         document.getElementById('audio-file').pause();
     } else {
+        d3.select("#image-play-pause")
+            .attr("xlink:href", "../img/audio_frequencies_using_d3/pause.png");
         document.getElementById('audio-file').play()
     }
 
